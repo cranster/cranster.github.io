@@ -1,0 +1,6 @@
+body {
+    /* Setting a gradient background */
+    background: linear-gradient(to bottom right, rgb(60, 60, 60), rgb(80, 80, 80));
+    height: 100vh;
+    margin: 0;
+}
