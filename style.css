@@ -254,8 +254,8 @@ input:focus::placeholder {
     color: white;
     padding: 10px 15px;
     border-radius: 5px;
-    display: flex; /* Start hidden */
-    z-index: 2; /* Ensure this is above other elements */
+    display: none;
+    z-index: 2;
 }
 
 .item .overlay {
@@ -277,6 +277,19 @@ input:focus::placeholder {
     transition: opacity 0.3s ease;
     width: 100%;
     z-index: 1; /* Ensure this is under the .add-to-cart-message */
+}
+
+.add-to-cart-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    display: none; /* Start hidden */
+    z-index: 2; /* Ensure this is above other elements */
 }
 
 .item.ripple-animation img {
