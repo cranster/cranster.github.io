@@ -380,3 +380,63 @@ input:focus::placeholder {
     left: 0%;
     margin: 0 auto;
 }
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3rem;
+    width: 100%;
+}
+
+.form-container textarea {
+    width: 80%;
+    height: 20rem;
+    font-family: Roboto;
+    font-size: 1.25em;
+    font-weight: 400;
+    color: rgb(245, 245, 245);
+    background-color: rgb(67, 67, 82);
+    padding-top: 10px;
+    padding-left: 10px;
+    box-sizing: border-box;
+    resize: none; /* Prevents resizing */
+    outline: none;
+    border: 1px solid rgb(245, 245, 245);
+    border-style: double;
+    border-radius: 1rem;
+}
+
+.form-container input { 
+    vertical-align: top;
+    padding-left: 10px;
+    padding-top: 10px;
+    width: 80%;
+    height: 20rem;
+    font-family: Roboto;
+    font-size: 1.25em;
+    font-weight: 400;
+    color: rgb(245, 245, 245);
+    background-color: rgb(67, 67, 82);
+}
+
+.submit-button {
+    margin-top: 1rem;
+    width: 10%;
+    padding: 10px;
+    background-color: #444;
+    font-family: Roboto;
+    font-size: 1rem;
+    font-weight: 400;
+    color: rgb(245, 245, 245);
+    border-color: rgb(245, 245, 245);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.submit-button:hover {
+    background-color: #555;
+}
