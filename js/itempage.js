@@ -36,9 +36,6 @@ function searchItems(query, category = 'all') {
         case 'price-low-high':
             visibleItems.sort((a, b) => parseFloat(a.dataset.price) - parseFloat(b.dataset.price));
             break;
-        case 'name-a-z':
-            visibleItems.sort((a, b) => a.querySelector('.item-text').innerText.localeCompare(b.querySelector('.item-text').innerText));
-            break;
     }
 
     visibleItems.forEach(item => itemsElement.appendChild(item));
