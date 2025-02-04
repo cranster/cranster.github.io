@@ -10,6 +10,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
+     <div class="navbar">
+        <div class="wrapper">
+            <div class="navbar-content">
+                <div class="nav-left">
+                    <button id="store-btn" class="navbar-button" onclick="navigateTo('store')">Store</button>
+                    <button id="request-btn" class="navbar-button" onclick="navigateTo('request')">Request</button>
+                </div>
+                <div class="nav-right">
+                    <button id="cart-btn" class="navbar-button" onclick="navigateTo('cart')">
+                        <img src="images/cart.png" class="cart-icon">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="wrapper">
         <div class="form-container">
             <textarea class="centered-textbox" placeholder="Enter text here..."></textarea>
