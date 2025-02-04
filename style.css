@@ -1,6 +1,188 @@
+* {
+    font-family: "Roboto";
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+}
+  
+html {
+    scroll-behavior: smooth;
+}
+
+p {
+    box-shadow: 0px 0px 20px black rgba(0, 0, 0, 0.5);  
+    -moz-box-shadow: 0px 0px 20px black rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 0px 20px black rgba(0, 0, 0, 0.5);
+    color: white;
+    font-family: "Roboto", serif;
+    font-optical-sizing: auto;
+    font-weight: 100;
+    font-style: normal;
+}
+
 body {
-    background: rgb(2,0,36);
-    background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(32,32,50,1) 100%);
+    background: linear-gradient(0deg, rgb(12, 12, 12) 0%, rgb(37, 37, 46) 100%);
     height: 100vh;
     margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
 }
+
+.navbar {
+    height: 56px;
+    box-shadow: 0 5px 200px var(--theme);
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    background-color: rgb(30,30,30);
+    animation: breathing 5s ease-out infinite normal;
+}
+
+.navlogo {
+    width: auto;  /* Set appropriate width */
+    height: auto;  /* Maintain aspect ratio */
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 5px 5px 5px 1rem;  /* Applies padding around the logo */
+}
+
+.navlogo-container {
+    display: flex;
+    align-items: center;  /* Centers content vertically in the container */
+    flex-shrink: 0;  /* Prevents the logo from shrinking */
+}
+
+.wrapper {
+    margin: 0 auto; 
+    width: 65%;
+}
+
+.searchbar {
+    height: 40px;
+    border: none;
+    background: rgb(67, 67, 82);
+    outline: none;
+    font-size: 1rem;
+    border-radius: 15px;
+    padding: 0 15px;
+    margin: 2rem;
+    width: 43rem;
+    max-width: calc(100% - 4rem);
+    text-align: center;
+    color: rgb(245, 245, 245);
+}
+
+::placeholder {
+    font-family: "Roboto";
+    font-optical-sizing: auto;
+    font-weight: 350;
+    font-style: normal;
+    color: rgb(245, 245, 245);
+}
+
+input:focus::placeholder {
+    color: transparent
+}
+
+.items {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 30px; 
+    padding: 0 2rem;
+    margin: 1rem auto;
+    max-width: calc(5 * (200px + 50px)); /* Prevent more than 5 items without overflow */
+}
+
+.item {
+    height: 240px;
+    width: 200px;
+    text-decoration: none;
+    border-radius: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    -webkit-user-select: none;
+    user-select: none;
+    position: relative;
+    transition: transform 0.1s;
+  }
+
+.item:hover {
+    transform: scale(0.9);
+}
+
+.item[hidden] {
+    display: none;
+}
+
+.item-image {
+    background: rgb(67, 67, 82);
+    object-fit: cover;
+    height: 200px;
+    width: 200px;
+    border-radius: 15px 15px 0 0;
+  }
+  
+.item-text {
+    line-height: 40px;
+    width: 200px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: rgb(245, 245, 2456);
+    background-color: rgb(67, 67, 82);
+    padding: 0px 10px;
+    border-radius: 0 0 15px 15px;
+    font-size: 18px;
+  }
+  
+.noitems {
+    font-size: 32px;
+    display: none;
+    padding: 0 15px;
+    margin: 1rem;
+    width: 43rem;
+    max-width: calc(100% - 4rem);
+    text-align: center;
+}
+
+button {
+    margin: 0 auto; /* Center the button by making its margins automatically calculate */
+    background-color: rgb(67, 67, 82);
+    margin-top: 35px;
+    padding: 5px;
+    border-radius: 10px;
+    width: fit-content;
+    border-style: solid;
+    border-color: rgb(90, 90, 110);
+    text-align: center;
+    display: block; /* Ensure the button occupies a block level making centering easier */
+}
+
+  button:hover {
+    cursor: pointer;
+  }
+
+  button a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(67, 67, 82);
+    color: rgb(245, 245, 245);
+    text-decoration: none;
+    border-color: transparent;
+    font-size: 2rem;
+  }
+
+  .noitems a {
+    margin: 0 auto;
+    display: block;
+    color: rgb(245, 245, 245);
+    left: 0%;
+  }
