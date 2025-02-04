@@ -22,6 +22,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    document.getElementById('request-btn').addEventListener('click', () => {
+        window.location.href = 'request.html'; // Redirect to cart.html on cart button click
+    });
+
     const payButton = document.getElementById('pay-button');
     if (payButton) {
         payButton.addEventListener('click', () => {
