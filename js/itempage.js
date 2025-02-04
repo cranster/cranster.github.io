@@ -113,6 +113,10 @@ document.getElementById('cart-btn').addEventListener('click', () => {
     window.location.href = 'cart.html'; // Redirect to cart.html on cart button click
 });
 
+document.getElementById('request-btn').addEventListener('click', () => {
+    window.location.href = 'request.html'; // Redirect to cart.html on cart button click
+});
+
 // Apply event listeners to each item
 document.querySelectorAll('.item').forEach(item => {
     item.addEventListener('click', handleItemClick);
