@@ -1,220 +1,302 @@
+/* Global Styles */
 * {
     font-family: "Roboto";
     font-optical-sizing: auto;
-    font-weight: 300;
     font-style: normal;
+    font-weight: 300;
 }
-  
+
+/* Base Elements */
 html {
     scroll-behavior: smooth;
 }
 
-p {
-    box-shadow: 0px 0px 20px black rgba(0, 0, 0, 0.5);  
-    -moz-box-shadow: 0px 0px 20px black rgba(0, 0, 0, 0.5);
-    box-shadow: 0px 0px 20px black rgba(0, 0, 0, 0.5);
-    color: white;
-    font-family: "Roboto", serif;
-    font-optical-sizing: auto;
-    font-weight: 100;
-    font-style: normal;
-}
-
 body {
     background: linear-gradient(0deg, rgb(12, 12, 12) 0%, rgb(37, 37, 46) 100%);
+    display: flex;
+    flex-direction: column;
     height: 100vh;
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: column;
 }
 
+p {
+    box-shadow: 0px 0px 20px black rgba(0, 0, 0, 0.5);
+    color: white;
+    font-family: "Roboto", serif;
+    font-style: normal;
+    font-weight: 100;
+}
+
+/* Navbar Styles */
 .navbar {
-    height: 56px;
+    background-color: rgb(30, 30, 30);
     box-shadow: 0 5px 200px var(--theme);
     position: sticky;
     top: 0;
     z-index: 9999;
-    background-color: rgb(30,30,30);
-    animation: breathing 5s ease-out infinite normal;
+    padding: 10px 0; /* Adjust how much space around the navbar content itself */
 }
 
+.navbar-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Ensure space between groups */
+    padding: 0 20px; /* Control padding for navbar internal content */
+}
+
+.nav-left,
+.nav-right {
+    display: flex;
+    align-items: center;
+}
+
+.nav-left {
+    gap: 10px; /* Space between Store and Request */
+}
+
+.nav-center {
+    flex-grow: 1;
+    margin: 0 10px; /* Add lateral margin */
+}
+
+.navbar-button {
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    border-radius: 5px;
+    color: rgb(245, 245, 245);
+    cursor: pointer;
+    display: inline-flex;
+    font-family: "Roboto";
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1em;
+    padding: 8px 3rem; /* Adjust padding for the buttons */
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.navbar-button:hover {
+    background-color: #444;
+}
+
+.navbar-button img.cart-icon {
+    width: 70px;
+}
+
+/* Logo Styles */
 .navlogo {
-    width: auto;  /* Set appropriate width */
-    height: auto;  /* Maintain aspect ratio */
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
+    border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+    border-top-left-radius: 15px;
     border-top-right-radius: 10px;
-    padding: 5px 5px 5px 1rem;  /* Applies padding around the logo */
+    height: auto;
+    padding: 5px 5px 5px 1rem;
+    width: auto;
 }
 
 .navlogo-container {
+    align-items: center;
     display: flex;
-    align-items: center;  /* Centers content vertically in the container */
-    flex-shrink: 0;  /* Prevents the logo from shrinking */
+    flex-shrink: 0;
 }
 
+/* Wrapper and Control Styles */
 .wrapper {
-    margin: 0 auto; 
+    margin: 0 auto;
     width: 65%;
 }
 
+
 .search-and-sort {
+    align-items: center;
     display: flex;
-    align-items: center; /* Align vertically centered */
-    margin: 1rem 2rem;   /* Margins around the container */
+    margin: 1rem 2rem;
 }
 
 .searchbar {
-    flex: 1 1 auto;      /* Allows the search bar to grow */
-    height: 40px;
-    border: none;
     background: rgb(67, 67, 82);
-    outline: none;
-    font-size: 1rem;
+    border: none;
     border-radius: 15px;
-    padding: 0 15px;
-    max-width: 100%;
+    color: rgb(245, 245, 245);
+    flex: 1 1 auto;
     font-family: "Roboto";
     font-optical-sizing: auto;
-    font-weight: 350;
+    font-size: 1rem;
     font-style: normal;
-    color: rgb(245, 245, 245);
+    font-weight: 350;
+    height: 40px;
+    max-width: 100%;
+    outline: none;
+    padding: 0 15px;
 }
 
-.category-dropdown, 
+/* Dropdown Styles */
+.category-dropdown,
 .sort-dropdown {
-    flex: 0 0 auto;      /* Prevents the dropdown from growing */
-    margin-left: 10px;   /* Small gap between search bar and dropdown */
-    height: 40px;
     background: rgb(67, 67, 82);
-    font-family: "Roboto";
-    font-optical-sizing: auto;
-    font-weight: 350;
-    font-style: normal;
-    color: rgb(245, 245, 245);
     border: none;
     border-radius: 15px;
+    color: rgb(245, 245, 245);
+    flex: 0 0 auto;
+    font-family: "Roboto";
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight: 350;
+    height: 40px;
+    margin-left: 10px;
     padding: 5px;
 }
 
 option {
+    color: rgb(245, 245, 245);
     font-family: "Roboto";
     font-optical-sizing: auto;
-    font-weight: 350;
     font-style: normal;
-    color: rgb(245, 245, 245);  
+    font-weight: 350;
 }
 
 ::placeholder {
+    color: rgb(245, 245, 245);
     font-family: "Roboto";
     font-optical-sizing: auto;
-    font-weight: 350;
     font-style: normal;
-    color: rgb(245, 245, 245);
+    font-weight: 350;
 }
 
 input:focus::placeholder {
-    color: transparent
+    color: transparent;
 }
 
+/* Item and Grid Styling */
 .items {
     display: grid;
+    gap: 30px;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 30px; 
-    padding: 0 2rem;
     margin: 1rem auto;
-    max-width: calc(5 * (200px + 50px)); /* Prevent more than 5 items without overflow */
+    max-width: calc(5 * (200px + 50px));
+    padding: 0 2rem;
 }
 
 .item {
-    height: 240px;
-    width: 200px;
-    text-decoration: none;
+    align-items: center;
     border-radius: 15px;
     cursor: pointer;
     display: flex;
-    align-items: center;
     flex-wrap: wrap;
+    height: 240px;
     justify-content: center;
-    -webkit-user-select: none;
-    user-select: none;
     position: relative;
+    text-decoration: none;
     transition: transform 0.1s;
-  }
-
-.item:hover {
-    transform: scale(0.9);
+    user-select: none;
+    width: 200px;
+    -webkit-user-select: none;
 }
 
 .item[hidden] {
     display: none;
 }
 
+.item img {
+    display: block;
+    transition: opacity 0.3s ease;
+}
+
+.item .overlay {
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    color: rgb(245, 245, 245);
+    display: flex;
+    font-family: Roboto;
+    font-size: 1.25em;
+    font-weight: 400;
+    height: 100%;
+    justify-content: center;
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    transition: opacity 0.15s ease;
+    width: 100%;
+}
+
+.item:hover {
+    opacity: 0.8;
+    transform: scale(0.9);
+}
+
+.item:hover .overlay {
+    opacity: 1;
+}
+
+/* Image and Text Styling */
 .item-image {
     background: rgb(67, 67, 82);
-    object-fit: cover;
-    height: 200px;
-    width: 200px;
     border-radius: 15px 15px 0 0;
-  }
-  
-.item-text {
-    line-height: 40px;
+    height: 200px;
+    object-fit: cover;
     width: 200px;
-    text-align: center;
+}
+
+.item-text {
+    background-color: rgb(67, 67, 82);
+    border-radius: 0 0 15px 15px;
+    color: rgb(245, 245, 245);
+    font-size: 18px;
+    line-height: 40px;
     overflow: hidden;
+    padding: 0px 10px;
+    text-align: center;
     text-overflow: ellipsis;
     white-space: nowrap;
-    color: rgb(245, 245, 2456);
-    background-color: rgb(67, 67, 82);
-    padding: 0px 10px;
-    border-radius: 0 0 15px 15px;
-    font-size: 18px;
-  }
-  
-.noitems {
-    font-size: 32px;
-    display: none;
-    padding: 0 15px;
-    margin: 1rem;
-    width: 43rem;
-    max-width: calc(100% - 4rem);
-    text-align: center;
+    width: 200px;
 }
 
-button {
-    margin: 0 auto; /* Center the button by making its margins automatically calculate */
+/* No Items Styling */
+.noitems {
+    display: none;
+    font-size: 32px;
+    margin: 1rem;
+    max-width: calc(100% - 4rem);
+    padding: 0 15px;
+    text-align: center;
+    width: 43rem;
+}
+
+.noitems button {
     background-color: rgb(67, 67, 82);
+    border-color: rgb(90, 90, 110);
+    border-radius: 10px;
+    display: block;
+    margin: 0 auto;
     margin-top: 35px;
     padding: 5px;
-    border-radius: 10px;
-    width: fit-content;
-    border-style: solid;
-    border-color: rgb(90, 90, 110);
     text-align: center;
-    display: block; /* Ensure the button occupies a block level making centering easier */
+    width: fit-content;
 }
 
-  button:hover {
+.noitems button:hover {
     cursor: pointer;
-  }
+}
 
-  button a {
-    display: flex;
-    justify-content: center;
+.noitems button a {
     align-items: center;
     background-color: rgb(67, 67, 82);
     color: rgb(245, 245, 245);
-    text-decoration: none;
-    border-color: transparent;
+    display: flex;
     font-size: 2rem;
-  }
+    justify-content: center;
+    text-decoration: none;
+}
 
-  .noitems a {
-    margin: 0 auto;
-    display: block;
+.noitems a {
     color: rgb(245, 245, 245);
+    display: block;
     left: 0%;
-  }
+    margin: 0 auto;
+}
