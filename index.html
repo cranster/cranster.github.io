@@ -20,9 +20,21 @@
         <!-- Other navbar content -->
     </div>
     <div class="wrapper">
-        <center>
+        <div class="search-and-sort">
             <input onkeyup="searchItems(this.value.trim().toLowerCase())" class="searchbar" placeholder="Search">
-        </center>
+            <select id="categoryFilter" class="category-dropdown">
+                <option value="all">All Categories</option>
+                <option value="monster">Monster</option>
+                <option value="celsius">Celsius</option>
+                <option value="redbull">Redbull</option>
+            </select>
+            <select id="sortOptions" class="sort-dropdown">
+                <option value="default">Sort By</option>
+                <option value="price-high-low">Price: High to Low</option>
+                <option value="price-low-high">Price: Low to High</option>
+                <option value="name-a-z">A-Z</option>
+            </select>
+        </div>
         <div class="items">
             <!--Green Monster-->
             <a class="item" href="google.com" data-tags="monster, green monster" data-price="3.00">
@@ -60,7 +72,7 @@
                 <div class="item-text">$3.00</div>
             </a>
             <!--Sugar Free Winter Red Bull-->
-            <a class="item" href="google.com" data-tags="red, red bull, sugar free" data-price="3.50">
+            <a class="item" href="google.com" data-tags="red, red bull, sugar free, redbull" data-price="3.50">
                 <img class = "item-image" src="images/sugarfreewinterredbull.jpg" width="150" height="150">
                 <div class="item-text">$3.50</div>
             </a>
