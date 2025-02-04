@@ -50,3 +50,11 @@ if (cartButton) {
         window.location.href = 'cart.html';
     });
 }
+
+document.getElementById('store-btn').addEventListener('click', () => {
+    window.location.href = 'index.html'; // Change this to your store's main page URL
+});
+
+document.getElementById('cart-btn').addEventListener('click', () => {
+    window.location.href = 'cart.html'; // Redirect to cart.html on cart button click
+});
