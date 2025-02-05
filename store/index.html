@@ -1,1 +1,110 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="./images/circle_logo.png" rel="icon"/>
+    <title>Kranster | Store</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script src="js/itempage.js" defer></script>
+</head>
+<body>
+    <div class="navbar">
+        <div class="wrapper">
+            <div class="navbar-content">
+                <div class="nav-left">
+                    <button id="store-btn" class="navbar-button" onclick="navigateTo('store')">Store</button>
+                    <button id="request-btn" class="navbar-button" onclick="navigateTo('request')">Request</button>
+                </div>
+                <div class="nav-right">
+                    <button id="cart-btn" class="navbar-button" onclick="navigateTo('cart')">
+                        <img src="images/cart.png" class="cart-icon">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wrapper">
+        <div class="search-and-sort">
+            <input onkeyup="searchItems(this.value.trim().toLowerCase())" class="searchbar" placeholder="Search">
+            <select id="categoryFilter" class="category-dropdown">
+                <option value="all">All Categories</option>
+                <option value="monster">Monster</option>
+                <option value="celsius">Celsius</option>
+                <option value="redbull">Redbull</option>
+            </select>
+            <select id="sortOptions" class="sort-dropdown">
+                <option value="default">Sort By</option>
+                <option value="price-high-low">Price: High to Low</option>
+                <option value="price-low-high">Price: Low to High</option>
+            </select>
+        </div>
+        <div class="items">
+            <!--Green Monster-->
+            <a class="item" href="#" data-id="greenmonster" data-tags="monster, green monster" data-price="2.99">
+                <img class = "item-image" src="images/greenmonster.jpg" width="150" height="150">
+                <div class="item-text">$2.99</div>
+                <div class="overlay">Add to cart</div>
+                <div class="add-to-cart-message">Added to cart</div>
+            </a>
+            <!--Peach Monster-->
+            <a class="item" href="#" data-id="peachmonster" data-tags="monster, peach monster" data-price="2.99">
+                <img class = "item-image" src="images/peachmonster.jpg" width="150" height="150">
+                <div class="item-text">$2.99</div>
+                <div class="overlay">Add to cart</div>
+                <div class="add-to-cart-message">Added to cart</div>
+            </a>
+            <!--Strawberry Monster-->
+            <a class="item" href="#" data-id="strawberrymonster" data-tags="monster, strawberry, strawberry monster" data-price="2.99">
+                <img class = "item-image" src="images/strawberrymonster.jpg" width="150" height="150">
+                <div class="item-text">$2.99</div>
+                <div class="overlay">Add to cart</div>
+                <div class="add-to-cart-message">Added to cart</div>
+            </a>
+            <!--White Monster-->
+            <a class="item" href="#" data-id="whitemonster" data-tags="monster, white, white monster" data-price="2.99">
+                <img class = "item-image" src="images/whitemonster.jpg" width="150" height="150">
+                <div class="item-text">$2.99</div>
+                <div class="overlay">Add to cart</div>
+                <div class="add-to-cart-message">Added to cart</div>
+            </a>
+            <!--Peach Vibe Celsisus-->
+            <a class="item" href="#" data-id="peachvibecelsius" data-tags="peach, peach vibe, peach vibe celsisus, celsius" data-price="2.99">
+                <img class = "item-image" src="images/peachvibecelsius.jpg" width="150" height="150">
+                <div class="item-text">$2.99</div>
+                <div class="overlay">Add to cart</div>
+                <div class="add-to-cart-message">Added to cart</div>
+            </a>
+            <!--Tropical Vibe Celsius-->
+            <a class="item" href="#" data-id="tropicalvibecelsius" data-tags="tropical, tropical vibe, tropical vibe celsius, celsius" data-price="2.99">
+                <img class = "item-image" src="images/tropicalvibecelsius.jpg" width="150" height="150">
+                <div class="item-text">$2.99</div>
+                <div class="overlay">Add to cart</div>
+                <div class="add-to-cart-message">Added to cart</div>
+            </a>
+            <!--Watermelon Celsius-->
+            <a class="item" href="#" data-id="watermeloncelsius" data-tags="watermelon, celsius, watermelon celsisus" data-price="2.99">
+                <img class = "item-image" src="images/watermeloncelsius.jpg" width="150" height="150">
+                <div class="item-text">$2.99</div>
+                <div class="overlay">Add to cart</div>
+                <div class="add-to-cart-message">Added to cart</div>
+            </a>
+            <!--Sugar Free Winter Red Bull-->
+            <a class="item" href="#" data-id="sugarfreewinterredbull" data-tags="red, red bull, sugar free, redbull" data-price="3.49">
+                <img class = "item-image" src="images/sugarfreewinterredbull.jpg" width="150" height="150">
+                <div class="item-text">$3.49</div>
+                <div class="overlay">Add to cart</div>
+                <div class="add-to-cart-message">Added to cart</div>
+            </a>
+        </div>
+        <div class="noitems" style="display: none;">
+            <a>There are no items that match those search results. Do you want to request an item?</a>
+            <button><a href="/request.html">Request</a></button>
+        </div>
+    </div>
+</body>
+</html>
