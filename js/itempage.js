@@ -49,9 +49,8 @@ function handleItemClick(event) {
 }
 
 function handleCartClick() {
-    window.location.href = 'cart/index.html'; // Redirect to cart.html on cart button click
+    window.location.href = '/cart'; // Use clean URL for cart page
 }
-
 
 function filterByCategory() {
     const category = document.getElementById('categoryFilter').value.toLowerCase();
@@ -109,9 +108,7 @@ document.getElementById('store-btn').addEventListener('click', () => {
     window.location.href = 'index.html'; // Change this to your store's main page URL
 });
 
-document.getElementById('cart-btn').addEventListener('click', () => {
-    window.location.href = 'cart/index.html'; // Redirect to cart.html on cart button click
-});
+document.getElementById('cart-btn').addEventListener('click', handleCartClick); // Redirect to cart page using clean URL
 
 document.getElementById('request-btn').addEventListener('click', () => {
     window.location.href = 'request.html'; // Redirect to cart.html on cart button click
