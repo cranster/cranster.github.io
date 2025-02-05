@@ -1,1 +1,74 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kranster | Request</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script src="js/request.js" defer></script>
+</head>
+<body>
+     <div class="navbar">
+        <div class="wrapper">
+            <div class="navbar-content">
+                <div class="nav-left">
+                    <button id="store-btn" class="navbar-button" onclick="navigateTo('store')">Store</button>
+                    <button id="request-btn" class="navbar-button" onclick="navigateTo('request')">Request</button>
+                </div>
+                <div class="nav-right">
+                    <button id="cart-btn" class="navbar-button" onclick="navigateTo('cart')">
+                        <img src="images/cart.png" class="cart-icon">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wrapper">
+        <div class="form-container">
+            <textarea class="centered-textbox" placeholder="Enter text here..."></textarea>
+            <button class="submit-button">Submit</button>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const textarea = document.querySelector('.centered-textbox');
+            const button = document.querySelector('.submit-button');
+
+            button.addEventListener('click', () => {
+                const message = textarea.value.trim();
+                const webhookURL = 'https://discord.com/api/webhooks/1336340473043877970/uOrv0JIFSKtetjre17vFdygTs7UaJIaj9h2DcjgbMPkIlir04cOtRqgDTMx4zsoQEge6'; // Replace with your webhook URL
+
+                if (message !== '') {
+                    fetch(webhookURL, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            content: message
+                        })
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            alert('Message sent successfully!');
+                            textarea.value = ''; // Clear textarea after sending
+                        } else {
+                            alert('Failed to send message.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('There was an error sending your message.');
+                    });
+                } else {
+                    alert('Please enter a message before submitting.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
