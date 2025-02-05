@@ -49,7 +49,7 @@ function handleItemClick(event) {
 }
 
 function handleCartClick() {
-    window.location.href = 'cart.html'; // Redirect to cart.html on cart button click
+    window.location.href = 'cart/index.html'; // Redirect to cart.html on cart button click
 }
 
 
@@ -110,7 +110,7 @@ document.getElementById('store-btn').addEventListener('click', () => {
 });
 
 document.getElementById('cart-btn').addEventListener('click', () => {
-    window.location.href = 'cart.html'; // Redirect to cart.html on cart button click
+    window.location.href = 'cart/index.html'; // Redirect to cart.html on cart button click
 });
 
 document.getElementById('request-btn').addEventListener('click', () => {
