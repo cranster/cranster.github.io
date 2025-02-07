@@ -8,28 +8,40 @@ document.addEventListener('DOMContentLoaded', () => {
         cartItemsContainer.appendChild(itemElement);
     });
 
+    // Navigation function
+    const navigateTo = (path) => {
+        window.location.href = `/${path}`;
+    };
+
     const storeButton = document.getElementById('store-btn');
-    if (storeButton) {
-        storeButton.addEventListener('click', () => {
-            window.location.href = '/store';
-        });
-    }
-
     const cartButton = document.getElementById('cart-btn');
-    if (cartButton) {
-        cartButton.addEventListener('click', () => {
-            window.location.href = '/cart';
+    const requestButton = document.getElementById('request-btn');
+
+    if (storeButton) {
+        storeButton.addEventListener('click', (event) => {
+            event.preventDefault();
+            navigateTo('store');
         });
     }
 
-    document.getElementById('request-btn').addEventListener('click', () => {
-        window.location.href = '/request'; // Redirect to cart.html on cart button click
-    });
+    if (cartButton) {
+        cartButton.addEventListener('click', (event) => {
+            event.preventDefault();
+            navigateTo('cart');
+        });
+    }
+
+    if (requestButton) {
+        requestButton.addEventListener('click', (event) => {
+            event.preventDefault();
+            navigateTo('request');
+        });
+    }
 
     const payButton = document.getElementById('pay-button');
     if (payButton) {
         payButton.addEventListener('click', () => {
-            // Example payload for your discord webhook
+            // Example payload for your Discord webhook
             const webhookURL = 'https://discord.com/api/webhooks/1336186026015719477/q0mFfbylLsE8N9JdHD0MSiCs_K53WgQ_npdo6_Ul9W0rsx1SAP6G5LLU-4dO2mzc6tqa';
             const message = {
                 content: 'hi'
