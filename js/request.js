@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = `/${path}`;
     };
 
-    // Assign the navigation function to window to make it accessible globally
+    // Assign the navigation function to the window to make it accessible globally
     window.navigateTo = navigateTo;
 
     // Other JavaScript for request page
@@ -13,25 +13,20 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Add an event listener for the submit-button
     button.addEventListener('click', () => {
-        const ipAddress = '35.141/157.142';  // Replace with your actual IP address
+        const ipAddress = '35.141.157.142';  // Use the corrected IP address format
         
-        // Validate if the input is not empty
-        if (textarea.value.trim() !== '') {
-            // Ping operation
-            fetch(`http://${ipAddress}:80`, {
-                method: 'HEAD',
-                mode: 'no-cors'
-            })
-            .then(() => {
-                console.log('Ping successful');
-                alert('Ping successful');
-            })
-            .catch((error) => {
-                console.error('Ping failed', error);
-                alert('Ping failed');
-            });
-        } else {
-            alert('Please enter a message before pinging.');
-        }
+        // Use HTTPS for the ping operation
+        fetch(`https://${ipAddress}:443`, {  // Assuming the service is accessible over HTTPS
+            method: 'HEAD',
+            mode: 'no-cors'
+        })
+        .then(() => {
+            console.log('Ping successful');
+            alert('Ping successful');
+        })
+        .catch((error) => {
+            console.error('Ping failed', error);
+            alert('Ping failed');
+        });
     });
 });
