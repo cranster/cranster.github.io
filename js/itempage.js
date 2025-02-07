@@ -1,7 +1,6 @@
-const cart = new Map(); // Using a Map to manage cart items and their quantities
-const cooldowns = new Map(); // Map to manage cooldown states for each item by ID
+const cart = new Map();
+const cooldowns = new Map();
 
-// Utility function to generate absolute paths :3
 function getAbsolutePath(relativePath) {
   const currentPath = window.location.pathname;
   if (currentPath.includes('/store')) {
@@ -25,19 +24,16 @@ function saveCartToLocalStorage() {
 }
 
 function updateCounters(item) {
-  if (!item) return; // Ensure the item exists
-
+  if (!item) return;
   const itemId = item.getAttribute('data-id');
   const cartCounter = item.querySelector('.cart-counter');
   const stockCounter = item.querySelector('.stock-counter');
 
-  // Check if these elements exist before proceeding
   if (!itemId || !cartCounter || !stockCounter) return;
 
   const quantity = cart.get(itemId);
   const stock = parseInt(stockCounter.getAttribute('data-stock'), 10);
 
-  // Set content and visibility for cart counter
   if (quantity && quantity > 0) {
     cartCounter.textContent = `${quantity}`;
     cartCounter.style.display = 'block';
@@ -45,15 +41,13 @@ function updateCounters(item) {
     cartCounter.style.display = 'none';
   }
 
-  // Set fixed stock counter based on data attribute
   stockCounter.textContent = `Stock: ${stock}`;
-  stockCounter.style.display = 'block'; // Ensure stock counter is always visible
+  stockCounter.style.display = 'block';
 }
 
 function addItemToCart(item) {
   const itemId = item.getAttribute('data-id');
 
-  // Cooldown logic to prevent rapid re-clicks
   if (cooldowns.has(itemId)) {
     const cooldownEnd = cooldowns.get(itemId);
     const now = Date.now();
@@ -63,7 +57,6 @@ function addItemToCart(item) {
     }
   }
 
-  // Update cart quantities
   if (cart.has(itemId)) {
     cart.set(itemId, cart.get(itemId) + 1);
   } else {
@@ -72,24 +65,21 @@ function addItemToCart(item) {
 
   // Save cart to localStorage
   saveCartToLocalStorage();
-  updateCounters(item); // Update counters immediately
+  updateCounters(item);
 
-  // Show "Added to cart" message and hide overlay
   const message = item.querySelector('.add-to-cart-message');
   const overlay = item.querySelector('.overlay');
-  overlay.style.opacity = 0; // Prevent overlay from showing
-  overlay.style.pointerEvents = 'none'; // Disable interaction
+  overlay.style.opacity = 0;
+  overlay.style.pointerEvents = 'none';
   message.style.display = 'block';
 
-  // Trigger ripple animation
   const image = item.querySelector('img');
   image.classList.add('ripple-animation');
   setTimeout(() => {
     message.style.display = 'none';
     image.classList.remove('ripple-animation');
-    // Reset overlay to be displayed on hover again
     overlay.style.opacity = 1;
-    overlay.style.pointerEvents = 'auto'; // Reset state without blocking interaction
+    overlay.style.pointerEvents = 'auto';
     const cooldownDuration = 500;
     cooldowns.set(itemId, Date.now() + cooldownDuration);
   }, 1000);
@@ -115,10 +105,8 @@ function searchItems(query, category = 'all') {
   const itemsElement = document.querySelector('.items');
   query = query.toLowerCase().trim();
   let visibleItems = [];
-
   itemsElement.querySelectorAll('.item').forEach(item => {
     if (!(item instanceof Element)) return;
-
     const tags = item.dataset.tags.toLowerCase();
     const price = item.dataset.price.toLowerCase();
     const matchesTag = tags.includes(query);
@@ -126,7 +114,6 @@ function searchItems(query, category = 'all') {
     const matchesCategory = category === 'all' || tags.includes(category);
     const isVisible = (matchesTag || matchesPrice) && matchesCategory;
     item.style.display = isVisible ? '' : 'none';
-
     if (isVisible) {
       visibleItems.push(item);
       const overlay = item.querySelector('.overlay');
@@ -144,30 +131,32 @@ function searchItems(query, category = 'all') {
       visibleItems.sort((a, b) => parseFloat(a.dataset.price) - parseFloat(b.dataset.price));
       break;
   }
-
+  
   visibleItems.forEach(item => {
     itemsElement.appendChild(item);
-    updateCounters(item); // Initialize counters
+    updateCounters(item); 
   });
-
+  
   document.querySelector('.noitems').style.display = visibleItems.length === 0 ? 'initial' : 'none';
 }
 
 function initializePage() {
   loadCartFromLocalStorage();
   document.querySelectorAll('.item').forEach(item => {
-    console.log(item); // Add console log for debugging
-    updateCounters(item); // Populate counters on load
+    console.log(item);
+    updateCounters(item);
     item.addEventListener('click', handleItemClick);
   });
 }
 
-// Initialize on page load
+// Initialize cart page operations
 initializePage();
 
-// Event listeners for search and category filter
+// Event listeners for search and category filter 
 document.querySelector('.searchbar').addEventListener('keyup', (e) => searchItems(e.target.value));
+
 document.getElementById('categoryFilter').addEventListener('change', filterByCategory);
+
 document.getElementById('sortOptions').addEventListener('change', () => searchItems(document.querySelector('.searchbar').value));
 
 function navigateTo(page) {
@@ -175,12 +164,8 @@ function navigateTo(page) {
 }
 
 // Adjust the event listeners accordingly:
-document.getElementById('store-btn').addEventListener('click', () => {
-  navigateTo('store');
-});
-document.getElementById('cart-btn').addEventListener('click', () => {
-  navigateTo('cart');
-});
-document.getElementById('request-btn').addEventListener('click', () => {
-  navigateTo('request');
-});
+document.getElementById('store-btn').addEventListener('click', () => navigateTo('store'));
+
+document.getElementById('cart-btn').addEventListener('click', () => navigateTo('cart'));
+
+document.getElementById('request-btn').addEventListener('click', () => navigateTo('request'));

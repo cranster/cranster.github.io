@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KranDash | Cart</title>
     <link rel="stylesheet" href="/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script defer src="/js/cart.js"></script>
 </head>
 <body>
@@ -24,23 +28,50 @@
         </div>
     </div>
     <div class="payment-wrapper">
-         <h1>Your Cart</h1>
+         <h1>Shopping Cart</h1>
         <div id="cart-items">
             <!-- Cart items will be dynamically loaded here -->
         </div>
 
-        <!-- Payment options -->
+
+
+        <!-- TO CHANGE LATER
+        <div class="payment-option">
+            <input type="radio" id="applepay" name="payment" value="applepay">
+            <img src="/images/applepaylogo.png" alt="Applepay">
+            <label for="cashapp">Apple Pay</label>
+        </div>
+
+        <div class="payment-option">
+            <input type="radio" id="cashapp" name="payment" value="cashapp">
+            <img src="/images/cashapplogo.png" alt="Cash">
+            <label for="cashapp">Cash App</label>
+        </div>
+
+        <div class="payment-option">
+            <input type="radio" id="venmo" name="payment" value="venmo">
+            <img src="/images/venmologo.png" alt="Venmo">
+            <label for="cashapp">Venmo</label>
+        </div>
+        
+        <div class="payment-option">
+            <input type="radio" id="zelle" name="payment" value="zelle">
+            <img src="/images/zellelogo.png" alt="Zelle">
+            <label for="cashapp">Zelle</label>
+        </div>
+
+         Payment options 
         <select class="payment-options">
             <option value="apple">CashApp</option>
             <option value="apple">Venmo</option>
             <option value="apple">Zelle</option>
             <option value="apple">Applepay</option>
             <option value="apple">Cash</option>
-        </select>
+        </select> -->
 
         <!-- Pay Now button -->
         <div class="cart-controls">
-            <button id="pay-button" class="navbar-button">Purchase</button>
+            <button id="pay-button">CHECKOUT</button>
         </div>
     </div>
 </body>
