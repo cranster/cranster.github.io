@@ -11,19 +11,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const storeButton = document.getElementById('store-btn');
     if (storeButton) {
         storeButton.addEventListener('click', () => {
-            window.location.href = 'index.html';
+            window.location.href = '/store';
         });
     }
 
     const cartButton = document.getElementById('cart-btn');
     if (cartButton) {
         cartButton.addEventListener('click', () => {
-            window.location.href = 'cart.html';
+            window.location.href = '/cart';
         });
     }
 
     document.getElementById('request-btn').addEventListener('click', () => {
-        window.location.href = 'request.html'; // Redirect to cart.html on cart button click
+        window.location.href = '/request'; // Redirect to cart.html on cart button click
     });
 
     const payButton = document.getElementById('pay-button');
