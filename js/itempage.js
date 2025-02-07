@@ -1,14 +1,53 @@
 const cart = new Map(); // Using a Map to manage cart items and their quantities
+const cooldowns = new Map(); // Map to manage cooldown states for each item by ID
+
+// Load cart from localStorage
+function loadCartFromLocalStorage() {
+    const loadedCart = JSON.parse(localStorage.getItem('cart') || '{}');
+    Object.entries(loadedCart).forEach(([itemId, quantity]) => {
+        cart.set(itemId, quantity);
+    });
+}
 
 function saveCartToLocalStorage() {
     const cartObject = Object.fromEntries(cart);
     localStorage.setItem('cart', JSON.stringify(cartObject));
 }
 
+function updateCounters(item) {
+    const itemId = item.getAttribute('data-id');
+    const cartCounter = item.querySelector('.cart-counter');
+    const stockCounter = item.querySelector('.stock-counter');
+    const quantity = cart.get(itemId);
+    const stock = parseInt(stockCounter.getAttribute('data-stock'), 10);
+
+    // Set content and visibility for cart counter
+    if (quantity && quantity > 0) {
+        cartCounter.textContent = `${quantity}`;
+        cartCounter.style.display = 'block';
+    } else {
+        cartCounter.style.display = 'none';
+    }
+
+    // Set fixed stock counter based on data attribute
+    stockCounter.textContent = `Stock: ${stock}`;
+    stockCounter.style.display = 'block'; // Ensure stock counter is always visible
+}
+
 function addItemToCart(item) {
     const itemId = item.getAttribute('data-id');
-    
-    // Update quantity for this item in the cart
+
+    // Cooldown logic to prevent rapid re-clicks
+    if (cooldowns.has(itemId)) {
+        const cooldownEnd = cooldowns.get(itemId);
+        const now = Date.now();
+        if (now < cooldownEnd) {
+            console.log(`Item ${itemId} is cooling down.`);
+            return;
+        }
+    }
+
+    // Update cart quantities
     if (cart.has(itemId)) {
         cart.set(itemId, cart.get(itemId) + 1);
     } else {
@@ -17,8 +56,7 @@ function addItemToCart(item) {
 
     // Save cart to localStorage
     saveCartToLocalStorage();
-
-    console.log('Cart:', [...cart.entries()]); // For debugging
+    updateCounters(item); // Update counters immediately
 
     // Show "Added to cart" message and hide overlay
     const message = item.querySelector('.add-to-cart-message');
@@ -31,7 +69,6 @@ function addItemToCart(item) {
     const image = item.querySelector('img');
     image.classList.add('ripple-animation');
 
-    // Hide message and reset class after animation
     setTimeout(() => {
         message.style.display = 'none';
         image.classList.remove('ripple-animation');
@@ -39,6 +76,10 @@ function addItemToCart(item) {
         // Reset overlay to be displayed on hover again
         overlay.style.opacity = 1;
         overlay.style.pointerEvents = 'auto';
+
+        // Reset state without blocking interaction, including cooldown
+        const cooldownDuration = 500;
+        cooldowns.set(itemId, Date.now() + cooldownDuration);
     }, 1000);
 }
 
@@ -71,6 +112,7 @@ function searchItems(query, category = 'all') {
         const matchesTag = tags.includes(query);
         const matchesPrice = price.includes(query);
         const matchesCategory = category === 'all' || tags.includes(category);
+
         const isVisible = (matchesTag || matchesPrice) && matchesCategory;
         item.style.display = isVisible ? '' : 'none';
 
@@ -94,9 +136,23 @@ function searchItems(query, category = 'all') {
             break;
     }
 
-    visibleItems.forEach(item => itemsElement.appendChild(item));
+    visibleItems.forEach(item => {
+        itemsElement.appendChild(item);
+        updateCounters(item); // Initialize counters
+    });
     document.querySelector(".noitems").style.display = visibleItems.length === 0 ? 'initial' : 'none';
 }
+
+function initializePage() {
+    loadCartFromLocalStorage();
+    document.querySelectorAll('.item').forEach(item => {
+        updateCounters(item); // Populate counters on load
+        item.addEventListener('click', handleItemClick);
+    });
+}
+
+// Initialize on page load
+initializePage();
 
 // Event listeners for search and category filter
 document.querySelector('.searchbar').addEventListener('keyup', (e) => searchItems(e.target.value));
@@ -112,9 +168,4 @@ document.getElementById('cart-btn').addEventListener('click', handleCartClick); 
 
 document.getElementById('request-btn').addEventListener('click', () => {
     window.location.href = '/request'; // Redirect to cart.html on cart button click
-});
-
-// Apply event listeners to each item
-document.querySelectorAll('.item').forEach(item => {
-    item.addEventListener('click', handleItemClick);
 });
