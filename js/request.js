@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const payButton = document.getElementById('pay-button');
     if (payButton) {
         payButton.addEventListener('click', () => {
-            // Example payload for your discord webhook
+            // Example payload for your Discord webhook
             const webhookURL = 'https://discord.com/api/webhooks/1336186026015719477/q0mFfbylLsE8N9JdHD0MSiCs_K53WgQ_npdo6_Ul9W0rsx1SAP6G5LLU-4dO2mzc6tqa';
             const message = {
                 content: 'hi'
@@ -35,26 +35,22 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-});
 
-const storeButton = document.getElementById('store-btn');
-if (storeButton) {
-    storeButton.addEventListener('click', () => {
-        window.location.href = '/store';
-    });
-}
+    const storeButton = document.getElementById('store-btn');
+    const cartButton = document.getElementById('cart-btn');
 
-const cartButton = document.getElementById('cart-btn');
-if (cartButton) {
-    cartButton.addEventListener('click', () => {
-        window.location.href = '/cart';
-    });
-}
+    // Remove additional listeners if present in HTML
+    if (storeButton) {
+        storeButton.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent any default action that may add a `#`
+            window.location.href = '/store';
+        });
+    }
 
-document.getElementById('store-btn').addEventListener('click', () => {
-    window.location.href = '/store'; // Change this to your store's main page URL
-});
-
-document.getElementById('cart-btn').addEventListener('click', () => {
-    window.location.href = '/cart'; // Redirect to cart.html on cart button click
+    if (cartButton) {
+        cartButton.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent any default action that may add a `#`
+            window.location.href = '/cart';
+        });
+    }
 });
