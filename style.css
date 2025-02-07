@@ -457,6 +457,25 @@ input:focus::placeholder {
     width: 100%;
 }
 
+.payment-options select {
+    box-shadow: 0px 0px 20px black rgba(0, 0, 0, 0.5);
+    color: white;
+    font-family: "Roboto", serif;
+    font-style: normal;
+    font-weight: 400;
+    color: rgb(245,245,245);
+    background-color: rgb(67, 67, 82);
+}
+
+.payment-options select:focus {
+    outline: none; /* Remove focus outline */
+    border-color: #666; /* Border color on focus */
+}
+
+.payment-options select:invalid {
+    color: red; /* Default color when nothing is selected */
+}
+
 .payment-options option {
     box-shadow: 0px 0px 20px black rgba(0, 0, 0, 0.5);
     color: white;
@@ -466,3 +485,4 @@ input:focus::placeholder {
     color: rgb(245,245,245);
     background-color: rgb(67, 67, 82);
 }
+
