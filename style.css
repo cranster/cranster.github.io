@@ -491,14 +491,8 @@ input:focus::placeholder {
 }
 
 .payment-wrapper {
-    background-color: rgb(67, 67, 82); /* Background color */
-    border: 1px solid rgb(245, 245, 245); /* Border color and style */
-    padding: 20px; /* Padding around the content */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
-    width: 80%; /* Width of the wrapper, adjust as needed */
-    max-width: 600px; /* Maximum width for large screens */
-    color: white; /* Text color to ensure readability */
-    text-align: center; /* Center the text inside the wrapper */
+    margin: 0 auto;
+    width: 65%;
+    background-color: red;
 }
 
