@@ -40,21 +40,21 @@ document.addEventListener('DOMContentLoaded', () => {
 const storeButton = document.getElementById('store-btn');
 if (storeButton) {
     storeButton.addEventListener('click', () => {
-        window.location.href = 'index.html';
+        window.location.href = '/store';
     });
 }
 
 const cartButton = document.getElementById('cart-btn');
 if (cartButton) {
     cartButton.addEventListener('click', () => {
-        window.location.href = 'cart.html';
+        window.location.href = '/cart';
     });
 }
 
 document.getElementById('store-btn').addEventListener('click', () => {
-    window.location.href = 'index.html'; // Change this to your store's main page URL
+    window.location.href = '/store'; // Change this to your store's main page URL
 });
 
 document.getElementById('cart-btn').addEventListener('click', () => {
-    window.location.href = 'cart.html'; // Redirect to cart.html on cart button click
+    window.location.href = '/cart'; // Redirect to cart.html on cart button click
 });
