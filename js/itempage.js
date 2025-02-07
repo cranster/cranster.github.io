@@ -105,13 +105,13 @@ document.getElementById('sortOptions').addEventListener('change', () => searchIt
 
 // Cart and Store button event listeners
 document.getElementById('store-btn').addEventListener('click', () => {
-    window.location.href = 'index.html'; // Change this to your store's main page URL
+    window.location.href = '/store'; // Change this to your store's main page URL
 });
 
 document.getElementById('cart-btn').addEventListener('click', handleCartClick); // Redirect to cart page using clean URL
 
 document.getElementById('request-btn').addEventListener('click', () => {
-    window.location.href = 'request.html'; // Redirect to cart.html on cart button click
+    window.location.href = '/request'; // Redirect to cart.html on cart button click
 });
 
 // Apply event listeners to each item
