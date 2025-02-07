@@ -1,6 +1,16 @@
 const cart = new Map(); // Using a Map to manage cart items and their quantities
 const cooldowns = new Map(); // Map to manage cooldown states for each item by ID
 
+// Utility function to generate absolute paths
+function getAbsolutePath(relativePath) {
+    const currentPath = window.location.pathname;
+    if (currentPath.includes('/store')) {
+        return `/store${relativePath}`;
+    } else {
+        return relativePath;
+    }
+}
+
 // Load cart from localStorage
 function loadCartFromLocalStorage() {
     const loadedCart = JSON.parse(localStorage.getItem('cart') || '{}');
@@ -90,7 +100,7 @@ function handleItemClick(event) {
 }
 
 function handleCartClick() {
-    window.location.href = '/cart'; // Use clean URL for cart page
+    window.location.href = getAbsolutePath('/cart'); 
 }
 
 function filterByCategory() {
@@ -161,11 +171,11 @@ document.getElementById('sortOptions').addEventListener('change', () => searchIt
 
 // Cart and Store button event listeners
 document.getElementById('store-btn').addEventListener('click', () => {
-    window.location.href = '/store'; // Change this to your store's main page URL
+    window.location.href = getAbsolutePath('/store');
 });
 
-document.getElementById('cart-btn').addEventListener('click', handleCartClick); // Redirect to cart page using clean URL
+document.getElementById('cart-btn').addEventListener('click', handleCartClick);
 
 document.getElementById('request-btn').addEventListener('click', () => {
-    window.location.href = '/request'; // Redirect to cart.html on cart button click
+    window.location.href = getAbsolutePath('/request');
 });
