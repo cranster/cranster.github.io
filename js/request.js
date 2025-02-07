@@ -10,32 +10,28 @@ document.addEventListener('DOMContentLoaded', () => {
     // Other JavaScript for request page
     const textarea = document.querySelector('.centered-textbox');
     const button = document.querySelector('.submit-button');
+    
+    // Add an event listener for the submit-button
     button.addEventListener('click', () => {
-        const message = textarea.value.trim();
-        const webhookURL = 'https://discord.com/api/webhooks/1336340473043877970/uOrv0JIFSKtetjre17vFdygTs7UaJIaj9h2DcjgbMPkIlir04cOtRqgDTMx4zsoQEge6';
-
-        if (message !== '') {
-            fetch(webhookURL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ content: message })
+        const ipAddress = '35.141/157.142';  // Replace with your actual IP address
+        
+        // Validate if the input is not empty
+        if (textarea.value.trim() !== '') {
+            // Ping operation
+            fetch(`http://${ipAddress}:80`, {
+                method: 'HEAD',
+                mode: 'no-cors'
             })
-            .then(response => {
-                if (response.ok) {
-                    alert('Message sent successfully!');
-                    textarea.value = ''; // Clear textarea after sending
-                } else {
-                    alert('Failed to send message.');
-                }
+            .then(() => {
+                console.log('Ping successful');
+                alert('Ping successful');
             })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('There was an error sending your message.');
+            .catch((error) => {
+                console.error('Ping failed', error);
+                alert('Ping failed');
             });
         } else {
-            alert('Please enter a message before submitting.');
+            alert('Please enter a message before pinging.');
         }
     });
 });
