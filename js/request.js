@@ -36,21 +36,34 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Navigation button handling
+    const navigateTo = (path) => {
+        window.location.href = `/${path}`;
+    };
+
     const storeButton = document.getElementById('store-btn');
     const cartButton = document.getElementById('cart-btn');
+    const requestButton = document.getElementById('request-btn'); // Assuming request page has a request button
 
-    // Remove additional listeners if present in HTML
     if (storeButton) {
-        storeButton.addEventListener('click', function(event) {
-            event.preventDefault(); // Prevent any default action that may add a `#`
-            window.location.href = '/store';
+        storeButton.addEventListener('click', (event) => {
+            event.preventDefault();
+            navigateTo('store');
         });
     }
 
     if (cartButton) {
-        cartButton.addEventListener('click', function(event) {
-            event.preventDefault(); // Prevent any default action that may add a `#`
-            window.location.href = '/cart';
+        cartButton.addEventListener('click', (event) => {
+            event.preventDefault();
+            navigateTo('cart');
+        });
+    }
+
+    // Ensure handlers for the request button as well, if applicable
+    if (requestButton) {
+        requestButton.addEventListener('click', (event) => {
+            event.preventDefault();
+            navigateTo('request');
         });
     }
 });
