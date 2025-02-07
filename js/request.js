@@ -4,56 +4,38 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = `/${path}`;
     };
 
-    const storeButton = document.getElementById('store-btn');
-    const cartButton = document.getElementById('cart-btn');
-    const requestButton = document.getElementById('request-btn'); // Assuming request page may still have this for refreshing or other use
+    // Assign the navigation function to window to make it accessible globally
+    window.navigateTo = navigateTo;
 
-    if (storeButton) {
-        storeButton.addEventListener('click', (event) => {
-            event.preventDefault();
-            navigateTo('store');
-        });
-    }
+    // Other JavaScript for request page
+    const textarea = document.querySelector('.centered-textbox');
+    const button = document.querySelector('.submit-button');
+    button.addEventListener('click', () => {
+        const message = textarea.value.trim();
+        const webhookURL = 'https://discord.com/api/webhooks/1336340473043877970/uOrv0JIFSKtetjre17vFdygTs7UaJIaj9h2DcjgbMPkIlir04cOtRqgDTMx4zsoQEge6';
 
-    if (cartButton) {
-        cartButton.addEventListener('click', (event) => {
-            event.preventDefault();
-            navigateTo('cart');
-        });
-    }
-
-    if (requestButton) {
-        requestButton.addEventListener('click', (event) => {
-            event.preventDefault();
-            navigateTo('request');
-        });
-    }
-
-    const payButton = document.getElementById('pay-button');
-    if (payButton) {
-        payButton.addEventListener('click', () => {
-            // Example payload for your Discord webhook
-            const webhookURL = 'https://discord.com/api/webhooks/1336186026015719477/q0mFfbylLsE8N9JdHD0MSiCs_K53WgQ_npdo6_Ul9W0rsx1SAP6G5LLU-4dO2mzc6tqa';
-            const message = {
-                content: 'Request initiated' // Adjusted for the 'Request' context
-            };
-
-            // Send a request to the Discord webhook
+        if (message !== '') {
             fetch(webhookURL, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(message),
-            }).then(response => {
+                body: JSON.stringify({ content: message })
+            })
+            .then(response => {
                 if (response.ok) {
-                    console.log('Message sent successfully');
+                    alert('Message sent successfully!');
+                    textarea.value = ''; // Clear textarea after sending
                 } else {
-                    console.error('Error in sending message:', response.statusText);
+                    alert('Failed to send message.');
                 }
-            }).catch(error => {
-                console.error('Error during fetch:', error);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('There was an error sending your message.');
             });
-        });
-    }
+        } else {
+            alert('Please enter a message before submitting.');
+        }
+    });
 });
