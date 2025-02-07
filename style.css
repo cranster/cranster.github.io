@@ -459,6 +459,10 @@ input:focus::placeholder {
     margin-top: 10px;
     border-radius: 4px;
     border: 1px solid #ccc;
+        color: white;
+    font-family: "Roboto", serif;
+    font-style: normal;
+    font-weight: 400;
 }
 
 .payment-options select {
@@ -492,7 +496,7 @@ input:focus::placeholder {
 
 .payment-wrapper {
     margin: 0 auto;
-    width: 65%;
-    background-color: red;
+    width: 45%;
+    background-color: rgb(67,67,82);
 }
 
