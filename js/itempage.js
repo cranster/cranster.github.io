@@ -170,11 +170,17 @@ document.querySelector('.searchbar').addEventListener('keyup', (e) => searchItem
 document.getElementById('categoryFilter').addEventListener('change', filterByCategory);
 document.getElementById('sortOptions').addEventListener('change', () => searchItems(document.querySelector('.searchbar').value));
 
-// Cart and Store button event listeners
+function navigateTo(page) {
+  window.location.href = `/${page}`;
+}
+
+// Adjust the event listeners accordingly:
 document.getElementById('store-btn').addEventListener('click', () => {
-  window.location.href = getAbsolutePath('/store');
+  navigateTo('store');
 });
-document.getElementById('cart-btn').addEventListener('click', handleCartClick);
+document.getElementById('cart-btn').addEventListener('click', () => {
+  navigateTo('cart');
+});
 document.getElementById('request-btn').addEventListener('click', () => {
-  window.location.href = getAbsolutePath('/request');
+  navigateTo('request');
 });
