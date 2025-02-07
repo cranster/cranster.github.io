@@ -498,7 +498,7 @@ input:focus::placeholder {
     margin: 0 auto;
     width: 45%;
     background-color: rgb(67,67,82);
-    margin-top: 48px;
+    margin-top: 35px;
     border-color: rgb(245,245,245)
     border-radius: 4px;
 }
