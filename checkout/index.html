@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script defer src="/js/cart.js"></script>
+    <script defer src="/js/checkout.js"></script>
 </head>
 <body>
     <div class="navbar">
@@ -28,17 +28,30 @@
         </div>
     </div>
     <div class="payment-wrapper">
-         <h1>Shopping Cart</h1>
-        <div id="cart-items">
-            <!-- Cart items will be dynamically loaded here -->
+        <h1>Payment</h1>
+        <div class="payment-option">
+            <button type="button" class="payment-button" data-payment="applepay">
+                <img src="/images/applepaylogo.png" alt="Apple Pay">
+            </button>
         </div>
-        <div id="cart-total" class="cart-total">
-            <h3>Total: $<span id="total-amount">0.00</span></h3>
-         </div>
-
+        <div class="payment-option">
+            <button type="button" class="payment-button" data-payment="cashapp">
+                <img src="/images/cashapplogo.png" alt="Cash App">
+            </button>
+        </div>
+        <div class="payment-option">
+            <button type="button" class="payment-button" data-payment="venmo">
+                <img src="/images/venmologo.png" alt="Venmo">
+            </button>
+        </div>
+        <div class="payment-option">
+            <button type="button" class="payment-button" data-payment="zelle">
+                <img src="/images/zellelogo.png" alt="Zelle">
+            </button>
+        </div>
         <!-- Pay Now button -->
         <div class="cart-controls">
-            <button id="pay-button">CHECKOUT</button>
+            <button id="pay-button">PURCHASE</button>
         </div>
     </div>
 </body>

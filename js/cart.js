@@ -1,5 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     const cartItemsContainer = document.getElementById('cart-items');
+    const totalAmountElement = document.getElementById('total-amount');
+    const cartTotalElement = document.getElementById('cart-total');
+    const payButton = document.getElementById('pay-button');
     const itemsData = {
         'greenmonster': { image: '/images/greenmonster.jpg', price: 2.99 },
         'peachmonster': { image: '/images/peachmonster.jpg', price: 2.99 },
@@ -11,32 +14,62 @@ document.addEventListener('DOMContentLoaded', () => {
         'sugarfreewinterredbull': { image: '/images/sugarfreewinterredbull.jpg', price: 3.49 },
     };
     const cartData = JSON.parse(localStorage.getItem('cart')) || {};
+
+    const updateCartTotal = () => {
+        let totalAmount = 0;
+        let itemCount = 0;
+
+        Object.entries(cartData).forEach(([itemId, quantity]) => {
+            const itemInfo = itemsData[itemId];
+            if (itemInfo) {
+                const adjustedItemPrice = itemInfo.price + 0.01; // Add 1 cent to individual item price
+                const itemTotalPrice = (adjustedItemPrice * quantity - 0.01).toFixed(2); // Subtract 1 cent from total price
+                totalAmount += parseFloat(itemTotalPrice);
+                itemCount += quantity;
+            }
+        });
+
+        totalAmount = totalAmount.toFixed(2); // Final total remains after individual adjustments
+        if (itemCount > 0) {
+            cartTotalElement.style.display = 'block';
+            totalAmountElement.textContent = totalAmount;
+            payButton.textContent = 'CHECKOUT';
+            payButton.onclick = () => navigateTo('checkout');
+        } else {
+            cartTotalElement.style.display = 'none';
+            payButton.textContent = 'No items in cart';
+            payButton.onclick = () => navigateTo('store');
+        }
+    };
+
     Object.entries(cartData).forEach(([itemId, quantity]) => {
         const itemInfo = itemsData[itemId];
         if (!itemInfo) return;
+
         const itemElement = document.createElement('div');
         itemElement.className = 'cart-item';
+
         const imgElement = document.createElement('img');
         imgElement.src = itemInfo.image;
         imgElement.width = 100;
         imgElement.height = 100;
-        
-        // Create price element with new class
+
         const priceElement = document.createElement('span');
         priceElement.className = 'item-price';
         const updateItemPrice = () => {
-            const totalPrice = (Math.ceil(itemInfo.price * quantity) - 0.01).toFixed(2);
-            priceElement.textContent = `Price: $${totalPrice}`;
+            const adjustedItemPrice = itemInfo.price + 0.01; // Add 1 cent to individual item price
+            const itemTotalPrice = (adjustedItemPrice * quantity - 0.01).toFixed(2); // Subtract 1 cent from total price
+            priceElement.textContent = `Price: $${itemTotalPrice}`;
         };
         updateItemPrice();
 
-        // Create quantity input field with new class
         const quantityElement = document.createElement('span');
         quantityElement.className = 'item-quantity';
         const quantityInput = document.createElement('input');
         quantityInput.type = 'number';
         quantityInput.value = quantity;
         quantityInput.min = 1;
+
         quantityInput.addEventListener('change', () => {
             quantity = parseInt(quantityInput.value, 10);
             if (quantity <= 0) {
@@ -47,66 +80,47 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             localStorage.setItem('cart', JSON.stringify(cartData));
             updateItemPrice();
+            updateCartTotal(); // Update total when quantity changes
         });
+
         quantityElement.textContent = 'Qty: ';
         quantityElement.appendChild(quantityInput);
-        
-        // Create remove button with trash icon
+
         const removeButton = document.createElement('button');
         removeButton.innerHTML = '<i class="fas fa-trash-alt"></i>';
         removeButton.addEventListener('click', () => {
             delete cartData[itemId];
             localStorage.setItem('cart', JSON.stringify(cartData));
             itemElement.remove();
+            updateCartTotal(); // Update total when an item is removed
         });
 
         itemElement.appendChild(imgElement);
         itemElement.appendChild(priceElement);
-        itemElement.appendChild(quantityElement);  // Append quantityElement after priceElement
+        itemElement.appendChild(quantityElement);
         itemElement.appendChild(removeButton);
+
         cartItemsContainer.appendChild(itemElement);
     });
-    
+
+    updateCartTotal(); // Initial total calculation
+
     const navigateTo = (path) => {
         window.location.href = `/${path}`;
     };
-    const storeButton = document.getElementById('store-btn');
-    const cartButton = document.getElementById('cart-btn');
-    const requestButton = document.getElementById('request-btn');
-    storeButton?.addEventListener('click', (event) => {
+
+    document.getElementById('store-btn')?.addEventListener('click', event => {
         event.preventDefault();
         navigateTo('store');
     });
-    cartButton?.addEventListener('click', (event) => {
+
+    document.getElementById('cart-btn')?.addEventListener('click', event => {
         event.preventDefault();
         navigateTo('cart');
     });
-    requestButton?.addEventListener('click', (event) => {
+
+    document.getElementById('request-btn')?.addEventListener('click', event => {
         event.preventDefault();
         navigateTo('request');
-    });
-    const payButton = document.getElementById('pay-button');
-    payButton?.addEventListener('click', () => {
-        const webhookURL = 'YOUR_WEBHOOK_HERE';
-        const message = {
-            content: 'hi',
-        };
-        fetch(webhookURL, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(message),
-        })
-        .then(response => {
-            if (response.ok) {
-                console.log('Message sent successfully');
-            } else {
-                console.error('Error in sending message:', response.statusText);
-            }
-        })
-        .catch(error => {
-            console.error('Error during fetch:', error);
-        });
     });
 });

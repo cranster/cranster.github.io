@@ -478,6 +478,11 @@ input:focus::placeholder {
     font-style: normal;
     font-weight: 400;
     background-color: rgb(67, 67, 82);
+    width: fit-content;
+}
+
+.payment-button.selected {
+    border: groove
 }
 
 .payment-options select:focus {
@@ -525,6 +530,12 @@ input:focus::placeholder {
     border-radius: 10px;
     height: 35px;
     width: auto;
+    border: none; /* Initialize without any border */
+}
+
+.payment-option img:hover {
+    cursor: pointer;
+    border-color: rgb(245,245,245);
 }
 
 .payment-option label {
@@ -562,8 +573,17 @@ input:focus::placeholder {
     align-content: center;
 }
 
+.cart-total {
+    color: rgb(245, 245, 245);
+    font-family: "Roboto", serif;
+    font-style: normal;
+    font-weight: 400;
+    margin-left: 1.2rem;
+}
+
 .cart-controls button:hover {
     cursor: pointer;
+    border-style: dashed;
 }
 
 .cart-item {
@@ -624,4 +644,34 @@ input:focus::placeholder {
     margin-top: 2.5rem;
     margin-left: -4rem;
     font-size: 0.75rem;
+}
+
+.cart-dropdown {
+    display: none; /* Initially hidden */
+    position: absolute;
+    top: 100%; /* Positioned below the button */
+    right: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    min-width: 200px;
+    max-height: 300px; /* Specify a maximum height */
+    overflow-y: auto; /* Enable vertical scrolling for overflow */
+    padding: 10px 0;
+}
+
+.cart-dropdown:hover {
+    display: block; /* Show on hover */
+}
+
+.payment-option button {
+    border-color: black;
+    border-radius: 5px;
+    border-style: solid;
+}
+
+.payment-option button:hover {
+    border-style: dashed;
+    cursor: pointer;
 }
