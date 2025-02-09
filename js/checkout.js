@@ -1,44 +1,42 @@
-document.addEventListener("DOMContentLoaded", function() {
-    console.log("Script is loaded and running!");
+document.addEventListener('DOMContentLoaded', () => {
+    // Retrieve cart data and selected payment method from local storage
+    const cartData = JSON.parse(localStorage.getItem('cart'));
+    const selectedPayment = localStorage.getItem('selectedPayment');
 
-    // Get references to payment buttons and pay button
-    const paymentButtons = document.querySelectorAll('.payment-button');
-    const payButton = document.getElementById('pay-button');
-    let selectedPayment = null;
+    // Log the retrieved data for debugging purposes
+    console.log('Cart Data: ', cartData);
+    console.log('Selected Payment Method: ', selectedPayment);
 
-    // Add event listeners to each payment button
-    paymentButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            // Log the click to see if it registers
-            console.log(`Clicked payment button for: ${button.dataset.payment}`);
+    // DOM elements
+    const cartSummaryElement = document.getElementById('cart-summary');
+    const paymentSummaryElement = document.getElementById('payment-summary');
+    const paymentImageElement = document.getElementById('payment-image');
 
-            // Remove the 'selected' class from all buttons
-            paymentButtons.forEach(btn => {
-                btn.classList.remove('selected');
-            });
-
-            // Add the 'selected' class to the clicked button
-            button.classList.add('selected');
-
-            // Set the selectedPayment to the clicked button's data-payment value
-            selectedPayment = button.dataset.payment;
+    // Display cart items
+    if (cartData && cartSummaryElement) {
+        Object.entries(cartData).forEach(([itemId, quantity]) => {
+            const itemElement = document.createElement('div');
+            itemElement.textContent = `${itemId}: ${quantity}`;
+            cartSummaryElement.appendChild(itemElement);
         });
-    });
+    }
 
-    // Add event listener to the pay button
-    payButton.addEventListener('click', function() {
-        console.log("Pay button clicked!");
+    // Display payment method and related image
+    if (selectedPayment) {
+        paymentSummaryElement.textContent = `Payment Method: ${selectedPayment}`;
         
-        if (selectedPayment) {
-            console.log(`Proceeding to payment method: ${selectedPayment}`);
-            window.location.href = `/${selectedPayment}`;
-        } else {
-            console.log("No payment method selected.");
-            alert("Please select a payment method.");
+        if (selectedPayment === "cashapp") {
+            if (paymentImageElement) {
+                const imgElement = document.createElement('img');
+                imgElement.src = '/images/cashapppayment.png';
+                imgElement.alt = 'Cash App Payment';
+                paymentImageElement.appendChild(imgElement);
+            }
         }
-    });
-});
+    }
 
+    // Add logic for further processing, if needed
+});
 const navigateTo = (path) => {
     window.location.href = `/${path}`;
 };

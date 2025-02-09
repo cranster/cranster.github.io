@@ -32,6 +32,31 @@
         <div id="cart-items">
             <!-- Cart items will be dynamically loaded here -->
         </div>
+
+         <!-- Payment options -->
+         <div class="payment-options">
+            <div class="payment-option">
+                <button type="button" class="payment-button" data-payment="applepay">
+                    <img src="/images/applepaylogo.png" alt="Apple Pay">
+                </button>
+            </div>
+            <div class="payment-option">
+                <button type="button" class="payment-button" data-payment="cashapp">
+                    <img src="/images/cashapplogo.png" alt="Cash App">
+                </button>
+            </div>
+            <div class="payment-option">
+                <button type="button" class="payment-button" data-payment="venmo">
+                    <img src="/images/venmologo.png" alt="Venmo">
+                </button>
+            </div>
+            <div class="payment-option">
+                <button type="button" class="payment-button" data-payment="zelle">
+                    <img src="/images/zellelogo.png" alt="Zelle">
+                </button>
+            </div>
+        </div>
+
         <div id="cart-total" class="cart-total">
             <h3>Total: $<span id="total-amount">0.00</span></h3>
          </div>

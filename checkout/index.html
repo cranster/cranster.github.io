@@ -29,29 +29,12 @@
     </div>
     <div class="payment-wrapper">
         <h1>Payment</h1>
-        <div class="payment-option">
-            <button type="button" class="payment-button" data-payment="applepay">
-                <img src="/images/applepaylogo.png" alt="Apple Pay">
-            </button>
-        </div>
-        <div class="payment-option">
-            <button type="button" class="payment-button" data-payment="cashapp">
-                <img src="/images/cashapplogo.png" alt="Cash App">
-            </button>
-        </div>
-        <div class="payment-option">
-            <button type="button" class="payment-button" data-payment="venmo">
-                <img src="/images/venmologo.png" alt="Venmo">
-            </button>
-        </div>
-        <div class="payment-option">
-            <button type="button" class="payment-button" data-payment="zelle">
-                <img src="/images/zellelogo.png" alt="Zelle">
-            </button>
-        </div>
         <!-- Pay Now button -->
+        <div id="cart-summary" style="display: none;"></div>
+        <div id="payment-summary" style="display: none;"></div>
+        <div id="payment-image"></div>
         <div class="cart-controls">
-            <button id="pay-button">PURCHASE</button>
+        <button id="pay-button">PLACE ORDER</button>
         </div>
     </div>
 </body>
